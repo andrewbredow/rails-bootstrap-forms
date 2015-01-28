@@ -261,6 +261,7 @@ module BootstrapForm
     def required_attribute?(obj, attribute)
 
       return false unless obj and attribute
+      return false unless obj.respond_to?(:validators_on)
 
       target = (obj.class == Class) ? obj : obj.class
       target_validators = target.validators_on(attribute).map(&:class)
